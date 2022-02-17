@@ -1,3 +1,7 @@
+'''
+Theeradon Somsri
+the finding angle on tan in python miniproject
+'''
 import cv2
 import math
 
