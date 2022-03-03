@@ -26,7 +26,7 @@ def find_color1(frame):
 
         # Find center of the conto
         M = cv2.moments(maxcontour)
-        if M['m00'] > 0 and cv2.contourArea(maxcontour) > 1000:
+        if M['m00'] > 0 and cv2.contourArea(maxcontour) > 50:
             cx = int(M['m10'] / M['m00'])
             cy = int(M['m01'] / M['m00'])
             return (cx, cy), True
@@ -41,7 +41,7 @@ def find_color2(frame):
     Filter "frame" for HSV bounds for color1 (inplace, modifies frame) & return coordinates of the object with that color
     """
     hsv_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-    hsv_lowerbound = np.array([27, 179, 88])  # replace THIS LINE w/ your hsv lowerb
+    hsv_lowerbound = np.arracy([27, 179, 88])  # replace THIS LINE w/ your hsv lowerb
     hsv_upperbound = np.array([55, 255, 233])  # replace THIS LINE w/ your hsv upperb
     mask = cv2.inRange(hsv_frame, hsv_lowerbound, hsv_upperbound)
     res = cv2.bitwise_and(frame, frame, mask=mask)
@@ -51,7 +51,7 @@ def find_color2(frame):
 
         # Find center of the contour
         M = cv2.moments(maxcontour)
-        if M['m00'] > 0 and cv2.contourArea(maxcontour) > 2000:
+        if M['m00'] > 0 and cv2.contourArea(maxcontour) > 50:
             cx = int(M['m10'] / M['m00'])
             cy = int(M['m01'] / M['m00'])
             return (cx, cy), True  # True
