@@ -26,7 +26,7 @@ def find_color1(frame):
 
         # Find center of the contour
         M = cv2.moments(maxcontour)
-        if M['m00'] > 0 and cv2.contourArea(maxcontour) > 1000:
+        if M['m00'] > 0 and cv2.contourArea(maxcontour) > 50:
             cx = int(M['m10'] / M['m00'])
             cy = int(M['m01'] / M['m00'])
             return (cx, cy), True
@@ -51,7 +51,7 @@ def find_color2(frame):
 
         # Find center of the contour
         M = cv2.moments(maxcontour)
-        if M['m00'] > 0 and cv2.contourArea(maxcontour) > 2000:
+        if M['m00'] > 0 and cv2.contourArea(maxcontour) > 50:
             cx = int(M['m10'] / M['m00'])
             cy = int(M['m01'] / M['m00'])
             return (cx, cy), True  # True
@@ -67,6 +67,7 @@ while (1):
     _, orig_frame = cap.read()
     # we'll be inplace modifying frames, so save a copy
     copy_frame = orig_frame.copy()
+    copy_frame = cv2.flip(copy_frame, 1) # for flip the image **if y=the camera already flip just ignore it
     (color1_x, color1_y), found_color1 = find_color1(copy_frame)
     (color2_x, color2_y), found_color2 = find_color2(copy_frame)
 
